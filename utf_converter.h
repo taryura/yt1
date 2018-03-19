@@ -10,6 +10,7 @@ class utf_converter
         utf_converter();
 
         void utf2ascii (std::string utf_string, std::string &ascii_string);
+        void esc2file (std::string &file_string);
         std::u16string utf8toutf16 (std::string utf_string);
         std::wstring utf8toutf16w (std::string utf_string);
         int Str_length, reload_counter;

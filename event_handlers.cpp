@@ -8,11 +8,13 @@
  **************************************************************/
 
 
+
 #include "wxGUI2.h"
 #include "Parse_YandexJSON.h"
 #include "YandexJSON.h"
 #include "a_requests.h"
 #include "utf_converter.h"
+#include <fstream>
 
 //General Close Event
 void wxGUI2Frame::OnClose(wxCloseEvent &event)
@@ -24,21 +26,40 @@ void wxGUI2Frame::OnClose(wxCloseEvent &event)
 
 void wxGUI2Frame::OnNew(wxCommandEvent &event)
 {
+    // set up URL and port
     std::string url_addr = "translate.yandex.net";
     std::string s_port = "443";
+
+    //Text in the status bar
     SetStatusText(_("Translating..."),2);
+
+    //fetching the text to translate and converting it to std::string format
     wxString to_translate = tc->GetValue();
     std::string text = std::string(to_translate.mb_str());
+
+    //creating API HTTPS request
     YandexJSON text_2;
     text_2.SetRqst(text);
     std::string rqst5 = text_2.request;
+
+    //sending request via sslrequest
     sslrequest text_3;
     text_3.rqst_set (url_addr, s_port, rqst5);
+
+    //parsing the response
     Parse_YandexJSON JSON_str;
     JSON_str.parse(text_3.replyreceived);
     std::string reply = JSON_str.JSON_text;
+    if (reply [0] == '['){
+            reply = JSON_str.cut_json(reply, 2, (reply.length() - 3));
+    }
+    //converting escape sequences and utf-8 to std::wstring
     utf_converter convert;
+
+    convert.esc2file(reply);
     std::wstring reply3 = convert.utf8toutf16w(reply);
+
+    //displaying the response
     tc2->SetValue(reply3);
     SetStatusText(_("Success!"),2);
 }

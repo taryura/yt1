@@ -3,7 +3,7 @@
 	"wxGUI2.h"
 	"a_requests.h"
 
-1520899346 d:\c++ projects\Новая папка\translate\wxgui2.h
+1521207448 d:\c++ projects\Новая папка\translate\wxgui2.h
 	<wx/wx.h>
 	"winsock2.h"
 	"Main.h"
@@ -2928,7 +2928,7 @@
 1493488838 d:\wxwidgets-3.0.3\include\wx\cocoa\mdi.h
 	"wx/frame.h"
 
-1520368799 d:\c++ projects\Новая папка\translate\main.h
+1521207448 d:\c++ projects\Новая папка\translate\main.h
 	<wx/app.h>
 
 1520951220 d:\c++ projects\Новая папка\translate\a_requests.h
@@ -11767,14 +11767,15 @@
 	<boost/asio/detail/push_options.hpp>
 	<boost/asio/detail/pop_options.hpp>
 
-1521049299 source:d:\c++ projects\Новая папка\translate\event_handlers.cpp
+1521234604 source:d:\c++ projects\Новая папка\translate\event_handlers.cpp
 	"wxGUI2.h"
 	"Parse_YandexJSON.h"
 	"YandexJSON.h"
 	"a_requests.h"
 	"utf_converter.h"
+	<fstream>
 
-1520895922 d:\c++ projects\Новая папка\translate\parse_yandexjson.h
+1521218778 d:\c++ projects\Новая папка\translate\parse_yandexjson.h
 	<iostream>
 	<cstring>
 	<string>
@@ -11795,7 +11796,7 @@
 1520368799 source:d:\c++ projects\Новая папка\translate\events.cpp
 	"wxGUI2.h"
 
-1520368799 source:d:\c++ projects\Новая папка\translate\main.cpp
+1521379819 source:d:\c++ projects\Новая папка\translate\main.cpp
 	"wx_pch.h"
 	"Main.h"
 	"wxGUI2.h"
@@ -11803,7 +11804,7 @@
 1520368799 source:d:\c++ projects\Новая папка\translate\menues.cpp
 	"wxGUI2.h"
 
-1520898728 source:d:\c++ projects\Новая папка\translate\parse_yandexjson.cpp
+1521218439 source:d:\c++ projects\Новая папка\translate\parse_yandexjson.cpp
 	"wxGUI2.h"
 	"Parse_YandexJSON.h"
 
@@ -11830,7 +11831,7 @@
 1520961000 source:d:\c++ projects\Новая папка\translate\toolbars.cpp
 	"wxGUI2.h"
 
-1520959772 source:d:\c++ projects\Новая папка\translate\wxgui2.cpp
+1521379818 source:d:\c++ projects\Новая папка\translate\wxgui2.cpp
 	"wx_pch.h"
 	"wxGUI2.h"
 
@@ -11846,10 +11847,10 @@
 	<ostream>
 	<fstream>
 
-1521049925 source:d:\c++ projects\Новая папка\translate\utf_converter.cpp
+1521380359 source:d:\c++ projects\Новая папка\translate\utf_converter.cpp
 	"utf_converter.h"
 
-1521049299 d:\c++ projects\Новая папка\translate\utf_converter.h
+1521234403 d:\c++ projects\Новая папка\translate\utf_converter.h
 	<iostream>
 	<string>
 	<locale>

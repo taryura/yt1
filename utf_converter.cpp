@@ -5,6 +5,43 @@ utf_converter::utf_converter()
     //ctor
 }
 
+void utf_converter::esc2file (std::string &file_string){
+
+
+    std::string esc_string = file_string;
+    std::string c2_char, c3_char;
+    std::string slash = "anr";
+    slash[0] = 0x5C;
+
+    Str_length = esc_string.length();
+
+    reload_counter = 0;
+    for (int i = 0; i <= Str_length; i++){
+            if ((esc_string [i] == slash [0]) && (esc_string [i+1] == slash[1])){
+
+                    file_string [i] = 0x0A;
+                    reload (esc_string, i+1, Str_length);
+                    Str_length --;
+
+            }
+                     else if ((esc_string [i] == slash [0]) && (esc_string [i+1] == slash[2])){
+
+                        file_string [i] = 0x0D;
+                        reload (esc_string, i+1, Str_length);
+                        Str_length --;
+
+                     }
+                          else {
+
+                            file_string [i] = esc_string [i];
+                          }
+
+    }
+
+    file_string.resize (esc_string.length() - reload_counter);
+    return;
+};
+
 void utf_converter::utf2ascii (std::string utf_string, std::string &ascii_string){
 
     std::string c2_char, c3_char;
@@ -32,7 +69,7 @@ void utf_converter::utf2ascii (std::string utf_string, std::string &ascii_string
 
                     utf1 = utf_string[i+1] - 0xa1;
                     ascii_string [i] = c2_char [utf1];
-                    reload (utf_string, i, Str_length);
+                    reload (utf_string, i+1, Str_length);
                     Str_length --;
 
             }
@@ -70,8 +107,7 @@ std::u16string utf_converter::utf8toutf16(std::string utf_string){
 std::wstring utf_converter::utf8toutf16w(std::string utf_string){
 
     std::wstring wstr = std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>, wchar_t>{}.from_bytes(utf_string.data());
-    //std::wstring_convert<std::codecvt_utf8_utf16<char16_t>> converter;
-    //std::wstring wstr = converter.from_bytes(utf_string);
+
     return wstr;
 };
 

@@ -17,7 +17,6 @@ int Parse_YandexJSON::find_ind (std::string &text, char chto_fnd1, char chto_fnd
         index2 = find_char (text, chto_fnd2, Str_length);
         if ((index1 > 9997) or (index2 > 9997)) {
                 JSON1 = "Incorrect format of the data";
-                std::cout << JSON << std::endl;
                 return 1;}
         else {
             JSON1 = cut_json(text, index1, index2);
@@ -45,7 +44,6 @@ std::string Parse_YandexJSON::cut_json (std::string &text, int index1, int index
         JSON_char = new (std::nothrow) char[array_length];
         if (JSON_char == nullptr){
            std::string a = "Error: memory could not be allocated";
-           std::cout << a << std::endl;
            return a;
         }
                else {

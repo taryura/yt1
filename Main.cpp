@@ -22,7 +22,7 @@ IMPLEMENT_APP(wxGUI2App);
 
 bool wxGUI2App::OnInit()
 {
-    wxGUI2Frame* frame = new wxGUI2Frame(0L, _("wxWidgets GUI Template"));
+    wxGUI2Frame* frame = new wxGUI2Frame(0L, _("Traducteur"));
     frame->SetIcon(wxICON(AppIcon)); // To Set App Icon
     frame->Show();
 

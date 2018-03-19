@@ -9,7 +9,7 @@
 
 #ifndef WXGUI2APP_H
 #define WXGUI2APP_H
-
+//#include "winsock2.h"
 #include <wx/app.h>
 
 class wxGUI2App : public wxApp
