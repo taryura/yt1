@@ -28,7 +28,7 @@ void YandexJSON::SetRqst (std::string &a){
         request_2 << "Content-Type: application/x-www-form-urlencoded\r\n";
         request_2 << "Content-Length: " << Str_length + 5 << "\r\n";
         request_2 << "\r\n";
-        request_2 << "text=" << request;
+        request_2 << "text=" << request << " ";
 
         request = request_2.str();
     };

@@ -14,6 +14,7 @@
 #include "YandexJSON.h"
 #include "a_requests.h"
 #include "utf_converter.h"
+#include "sslrequest.h"
 #include <fstream>
 
 //General Close Event
@@ -43,6 +44,10 @@ void wxGUI2Frame::OnNew(wxCommandEvent &event)
     std::string rqst5 = text_2.request;
 
     //sending request via sslrequest
+
+    //Displaying HTTP request - To delete
+    //tc->SetValue(rqst5);
+
     sslrequest text_3;
     text_3.rqst_set (url_addr, s_port, rqst5);
 
@@ -66,15 +71,24 @@ void wxGUI2Frame::OnNew(wxCommandEvent &event)
 
 void wxGUI2Frame::OnOpen(wxCommandEvent &event)
 {
+      wxFileDialog * openFileDialog = new wxFileDialog(this);
 
-    wxString msg = "Supposed to open an existing project";
-    wxMessageBox(msg, _("Welcome to..."));
+  if (openFileDialog->ShowModal() == wxID_OK){
+      wxString fileName = openFileDialog->GetPath();
+      tc->LoadFile(fileName);
+  }
+
 }
 
 void wxGUI2Frame::OnSave(wxCommandEvent &event)
 {
-    wxString msg = "Supposed to save the project";
-    wxMessageBox(msg, _("Welcome to..."));
+      wxFileDialog * openFileDialog = new wxFileDialog(this);
+
+  if (openFileDialog->ShowModal() == wxID_OK){
+      wxString fileName = openFileDialog->GetPath();
+      tc2->SaveFile(fileName);
+  }
+
 }
 
 //import submenu

@@ -1,5 +1,5 @@
-#include "wxGUI2.h"
 #include "a_requests.h"
+#include "head_type.h"
 
 client::client(boost::asio::io_service& io_service,
       boost::asio::ssl::context& context,
@@ -37,6 +37,7 @@ client::client(boost::asio::io_service& io_service,
     }
     else
     {
+      reply2 = ("Connect failed: " + error.message());
       std::cout << "Connect failed: " << error.message() << "\n";
     }
   }
@@ -58,6 +59,7 @@ client::client(boost::asio::io_service& io_service,
     }
     else
     {
+      reply2 = ("Handshake failed: " + error.message());
       std::cout << "Handshake failed: " << error.message() << "\n";
     }
   }
@@ -67,63 +69,90 @@ client::client(boost::asio::io_service& io_service,
   {
     if (!error)
     {
-
+      //reading header
       boost::asio::async_read_until(socket_,
-          MyBuffer, 'H',
+          MyBuffer, "\r\n\r\n",
           boost::bind(&client::handle_read, this,
             boost::asio::placeholders::error,
             boost::asio::placeholders::bytes_transferred));
     }
     else
     {
+      reply2 = ("Write failed: " + error.message());
       std::cout << "Write failed: " << error.message() << "\n";
     }
   }
 
-  void client::handle_read(const boost::system::error_code& error,
+void client::handle_read(const boost::system::error_code& error,
       size_t bytes_transferred)
   {
     if (!error)
     {
-
-      std::ostringstream BufOutStream;
-      BufOutStream << &MyBuffer;
-      reply2 = BufOutStream.str();
+      header = buff_to_string(MyBuffer);
+      head_type parsed_header (header);
+      //reading till EOF if content length is determined.
+      std::string string1 = parsed_header.find_str("Content-Length");
+      if (!parsed_header.err){
+        std::string value1 = parsed_header.find_val(string1);
+        int length = atoi(value1.c_str());
+        //checking if everything has been already transfered
+        if ((bytes_transferred + length) > header.length()){
+          //if not reading till EOF
+          boost::asio::async_read(socket_, MyBuffer,
+          boost::asio::transfer_at_least(length),
+          boost::bind(&client::handle_read_content, this,
+            boost::asio::placeholders::error));
+        }
+        else {
+            reply2 = header;
+            return;
+        }
+      }
+      else {
+        //reading till EOF if chunked.
+        string1 = parsed_header.find_str("Transfer-Encoding");
+        if (!parsed_header.err){
+          boost::asio::async_read_until(socket_,
+            MyBuffer, "\r\n0\r\n",
+            boost::bind(&client::handle_read_content, this,
+            boost::asio::placeholders::error));
+        }
+      reply2 = ("Read of the body failed: the length is undetermined. Please try to resend the request.");
+      }
 
     }
     else
     {
+      reply2 = ("Read failed: " + error.message());
       std::cout << "Read failed: " << error.message() << "\n";
     }
   }
 
 
-void sslrequest::rqst_set (std::string addr,std::string prt,std::string &req_text){
-            requesttosend = req_text;
-            address1 = addr;
-            port1 = prt;
-  try
+void client::handle_read_content(const boost::system::error_code& error)
   {
-    boost::asio::io_service io_service;
+    if (!error)
+    {
+      reply2 = header + buff_to_string(MyBuffer);
+    }
+    else
+    {
+      reply2 = ("Read2 failed: " + error.message()+ "\r\n" + header);
+      std::cout << "Read failed: " << error.message() << "\n";
+    }
 
-    boost::asio::ip::tcp::resolver resolver(io_service);
-    boost::asio::ip::tcp::resolver::query query(address1, port1);
-    boost::asio::ip::tcp::resolver::iterator iterator = resolver.resolve(query);
-
-    boost::asio::ssl::context ctx(boost::asio::ssl::context::sslv23);
-
-    client c(io_service, ctx, iterator, requesttosend);
-
-    io_service.run();
-
-    replyreceived = c.reply2;
-  }
-  catch (std::exception& e)
-  {
-    std::cerr << "Exception: Could not establish connection. Please try again later" << "\n";
 
   }
 
+std::string client::buff_to_string (boost::asio::streambuf &MyBuffer)
+{
+      std::ostringstream BufOutStream;
+      BufOutStream << &MyBuffer;
+      return BufOutStream.str();
 }
+
+
+
+
 
 

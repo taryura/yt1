@@ -68,7 +68,7 @@ wxGUI2Frame::wxGUI2Frame(wxFrame *frame, const wxString& title)
     // create a status bar with some information about used wxWidgets version
     CreateStatusBar(3);
     SetStatusText(_("EN to FR translator"),0);
-    SetStatusText("Version 0.1.1 alpha", 1);
+    SetStatusText("Version 0.2.1 alpha", 1);
     SetStatusText(_("By Vladt (me)"),2);
 
 }

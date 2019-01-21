@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
-1520895587 source:d:\c++ projects\Новая папка\translate\a_requests.cpp
-	"wxGUI2.h"
+1522242148 source:d:\c++ projects\Новая папка\translate\a_requests.cpp
 	"a_requests.h"
+	"head_type.h"
 
 1521207448 d:\c++ projects\Новая папка\translate\wxgui2.h
 	<wx/wx.h>
@@ -2931,14 +2931,12 @@
 1521207448 d:\c++ projects\Новая папка\translate\main.h
 	<wx/app.h>
 
-1520951220 d:\c++ projects\Новая папка\translate\a_requests.h
-	<iostream>
+1522242148 d:\c++ projects\Новая папка\translate\a_requests.h
 	<cstring>
 	<string>
+	<iostream>
 	<sstream>
 	<cstdlib>
-	<istream>
-	<ostream>
 	<boost/bind.hpp>
 	<boost/asio.hpp>
 	<boost/asio/ssl.hpp>
@@ -11767,12 +11765,13 @@
 	<boost/asio/detail/push_options.hpp>
 	<boost/asio/detail/pop_options.hpp>
 
-1521234604 source:d:\c++ projects\Новая папка\translate\event_handlers.cpp
+1548097815 source:d:\c++ projects\Новая папка\translate\event_handlers.cpp
 	"wxGUI2.h"
 	"Parse_YandexJSON.h"
 	"YandexJSON.h"
 	"a_requests.h"
 	"utf_converter.h"
+	"sslrequest.h"
 	<fstream>
 
 1521218778 d:\c++ projects\Новая папка\translate\parse_yandexjson.h
@@ -11831,11 +11830,11 @@
 1520961000 source:d:\c++ projects\Новая папка\translate\toolbars.cpp
 	"wxGUI2.h"
 
-1521379818 source:d:\c++ projects\Новая папка\translate\wxgui2.cpp
+1548098491 source:d:\c++ projects\Новая папка\translate\wxgui2.cpp
 	"wx_pch.h"
 	"wxGUI2.h"
 
-1521044648 source:d:\c++ projects\Новая папка\translate\yandexjson.cpp
+1548098034 source:d:\c++ projects\Новая папка\translate\yandexjson.cpp
 	"wxGUI2.h"
 	"YandexJSON.h"
 	<iostream>
@@ -11856,4 +11855,16 @@
 	<locale>
 	<codecvt>
 	<fstream>
+
+1522157998 d:\c++ projects\Новая папка\translate\head_type.h
+	<iostream>
+
+1522242148 d:\c++ projects\Новая папка\translate\sslrequest.h
+	"a_requests.h"
+
+1522154205 source:d:\c++ projects\Новая папка\translate\head_type.cpp
+	"head_type.h"
+
+1522242391 source:d:\c++ projects\Новая папка\translate\sslrequest.cpp
+	"sslrequest.h"
 
