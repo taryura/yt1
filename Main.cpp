@@ -22,7 +22,7 @@ IMPLEMENT_APP(wxGUI2App);
 
 bool wxGUI2App::OnInit()
 {
-    wxGUI2Frame* frame = new wxGUI2Frame(0L, _("Traducteur"));
+    wxGUI2Frame* frame = new wxGUI2Frame(0L, _("Yandex translator 0.2.1"));
     frame->SetIcon(wxICON(AppIcon)); // To Set App Icon
     frame->Show();
 

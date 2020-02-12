@@ -9,7 +9,7 @@
 #include <ostream>
 #include <fstream>
 
-void YandexJSON::SetRqst (std::string &a){
+void YandexJSON::SetRqst (std::string &a, std::string SourceCode, std::string TargetCode){
         request = a;
         Str_length = request.length();
 
@@ -21,7 +21,8 @@ void YandexJSON::SetRqst (std::string &a){
         Ykey[i]-=1;
         }
         std::stringstream request_2;
-        request_2 << "POST /api/v1.5/tr.json/translate?lang=en-fr&key=";
+        request_2 << "POST /api/v1.5/tr.json/translate?lang=";
+        request_2 << SourceCode << "-" << TargetCode << "&key=";
         request_2 << Ykey << " HTTP/1.1\r\n";
         request_2 << "Host: translate.yandex.net\r\n";
         request_2 << "Accept: */*\r\n";
@@ -31,4 +32,11 @@ void YandexJSON::SetRqst (std::string &a){
         request_2 << "text=" << request << " ";
 
         request = request_2.str();
+
+/*
+        std::ofstream myfile;
+        myfile.open ("example.txt");
+        myfile << request;
+        myfile.close();
+*/
     };

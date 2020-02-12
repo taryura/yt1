@@ -7,8 +7,6 @@
  * License:
  **************************************************************/
 
-
-
 #include "wxGUI2.h"
 #include "Parse_YandexJSON.h"
 #include "YandexJSON.h"
@@ -25,7 +23,7 @@ void wxGUI2Frame::OnClose(wxCloseEvent &event)
 
 //File Menu
 
-void wxGUI2Frame::OnNew(wxCommandEvent &event)
+void wxGUI2Frame::OnTranslate(wxCommandEvent &event)
 {
     // set up URL and port
     std::string url_addr = "translate.yandex.net";
@@ -36,11 +34,15 @@ void wxGUI2Frame::OnNew(wxCommandEvent &event)
 
     //fetching the text to translate and converting it to std::string format
     wxString to_translate = tc->GetValue();
-    std::string text = std::string(to_translate.mb_str());
+
+    std::string text = std::string(to_translate.mb_str(wxConvUTF8));
+
+    //Check text for debug purpose
+    //wxMessageBox(text, _("Welcome to..."));
 
     //creating API HTTPS request
     YandexJSON text_2;
-    text_2.SetRqst(text);
+    text_2.SetRqst(text, SourceLangCode, TargetLangCode);
     std::string rqst5 = text_2.request;
 
     //sending request via sslrequest
@@ -105,6 +107,14 @@ void wxGUI2Frame::OnImpFromURL(wxCommandEvent &event)
     wxMessageBox(msg, _("Welcome to..."));
 }
 
+void wxGUI2Frame::OnNew(wxCommandEvent &event)
+{
+    //Clearing the text controls
+    tc->Clear();
+    tc2->Clear();
+
+}
+
 //Quit
 void wxGUI2Frame::OnQuit(wxCommandEvent &event)
 {
@@ -133,6 +143,25 @@ void wxGUI2Frame::OnPaste(wxCommandEvent &event)
 
 void wxGUI2Frame::OnAbout(wxCommandEvent &event)
 {
-    wxString msg = "English to French translator v. 0.1 alpha. By Vladyslav Taranenko, 2017.";
-    wxMessageBox(msg, _("English to French translator"));
+    wxString msg = "Yandex translator v0.2.1 alpha. By Vladyslav Taranenko, 2020.";
+    wxMessageBox(msg, _("About"));
+}
+
+void wxGUI2Frame::SetSource(wxCommandEvent &event)
+{
+    wxString msg = choice1->GetStringSelection();
+
+    //retrieving language code
+    std::string str1 = std::string(msg.mb_str());
+
+    SourceLangCode = str1.substr(str1.find("(")+1, 2);
+}
+
+void wxGUI2Frame::SetTarget(wxCommandEvent &event)
+{
+    wxString msg = choice2->GetStringSelection();
+    //retrieving language code
+    std::string str1 = std::string(msg.mb_str());
+
+    TargetLangCode = str1.substr(str1.find("(")+1, 2);
 }

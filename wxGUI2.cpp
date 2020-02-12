@@ -47,7 +47,7 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 wxGUI2Frame::wxGUI2Frame(wxFrame *frame, const wxString& title)
-    : wxFrame(frame, -1, title)
+    : EventRedirect(frame, -1, title)
 {
     // creating a menu bar
     mbar = new wxMenuBar();
@@ -67,9 +67,9 @@ wxGUI2Frame::wxGUI2Frame(wxFrame *frame, const wxString& title)
 
     // create a status bar with some information about used wxWidgets version
     CreateStatusBar(3);
-    SetStatusText(_("EN to FR translator"),0);
+    SetStatusText(_("Yandex translator"),0);
     SetStatusText("Version 0.2.1 alpha", 1);
-    SetStatusText(_("By Vladt (me)"),2);
+    SetStatusText(_("By Vladt"),2);
 
 }
 

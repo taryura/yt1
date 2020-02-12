@@ -12,7 +12,7 @@
 BEGIN_EVENT_TABLE(wxGUI2Frame, wxFrame)
     EVT_CLOSE(wxGUI2Frame::OnClose)
 
-    //file menu
+    //file menus
 
     EVT_MENU(idMenuFile_New, wxGUI2Frame::OnNew)
     EVT_MENU(idMenuFile_Open, wxGUI2Frame::OnOpen)
@@ -30,5 +30,12 @@ BEGIN_EVENT_TABLE(wxGUI2Frame, wxFrame)
 
     //help menu
     EVT_MENU(idMenuAbout, wxGUI2Frame::OnAbout)
+
+    //Choice menus
+    EVT_CHOICE(idDropdownSource, wxGUI2Frame::SetSource)
+    EVT_CHOICE(idDropdownTarget, wxGUI2Frame::SetTarget)
+
+    //Buttons
+    EVT_BUTTON(idTranslateButton, wxGUI2Frame::OnTranslate)
 
 END_EVENT_TABLE()

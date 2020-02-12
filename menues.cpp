@@ -16,7 +16,7 @@ void wxGUI2Frame::CreateFileMenu()
     //file menu
     fileMenu->Append(idMenuFile_New, _("&New\tCtrl-N"), _("New project"));
     fileMenu->Append(idMenuFile_Open, _("&Open\tCtrl-O"), _("Open project"));
-    fileMenu->Append(idMenuFile_Save, _("&Open\tCtrl-S"), _("Save project"));
+    fileMenu->Append(idMenuFile_Save, _("&Save\tCtrl-S"), _("Save project"));
     fileMenu->AppendSeparator();
 
     wxMenu* imp = new wxMenu;
@@ -34,9 +34,9 @@ void wxGUI2Frame::CreateFileMenu()
 void wxGUI2Frame::CreateEditMenu()
 {
     wxMenu* editMenu = new wxMenu(_T(""));
-    editMenu->Append(idMenuEdit_Copy, _("&Copy\tCtrl-C"), _("Copy selected"));
-    editMenu->Append(idMenuEdit_Cut, _("C&ut\tCtrl-X"), _("Cut selected"));
-    editMenu->Append(idMenuEdit_Paste, _("&Paste\tCtrl-V"), _("Paste"));
+    editMenu->Append(wxID_COPY, _("&Copy\tCtrl-C"), _("Copy selected"));
+    editMenu->Append(wxID_CUT, _("C&ut\tCtrl-X"), _("Cut selected"));
+    editMenu->Append(wxID_PASTE, _("&Paste\tCtrl-V"), _("Paste"));
 
     mbar->Append(editMenu, _("&Edit"));
     return;

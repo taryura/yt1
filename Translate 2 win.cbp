@@ -14,17 +14,17 @@
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="D:/wxWidgets-3.0.3/lib/gcc_dll/mswu" />
+					<Add directory="D:/wxWidgets-3.1.2_dyn/lib/gcc_dll/mswu" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="D:/wxWidgets-3.0.3/lib/gcc_dll/mswu" />
+					<Add directory="D:/wxWidgets-3.1.2_dyn/lib/gcc_dll/mswu" />
 				</ResourceCompiler>
 				<Linker>
 					<Add library="libwxmsw30u_core.a" />
 					<Add library="libwxbase30u.a" />
 					<Add library="libwxpng.a" />
 					<Add library="libwxzlib.a" />
-					<Add directory="D:/wxWidgets-3.0.3/lib/gcc_dll" />
+					<Add directory="D:/wxWidgets-3.1.2_dyn/lib/gcc_dll" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -35,18 +35,18 @@
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="D:/wxWidgets-3.0.3/lib/gcc_dll/mswu" />
+					<Add directory="D:/wxWidgets-3.1.2_dyn/lib/gcc_dll/mswu" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="D:/wxWidgets-3.0.3/lib/gcc_dll/mswu" />
+					<Add directory="D:/wxWidgets-3.1.2_dyn/lib/gcc_dll/mswu" />
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="libwxmsw30u_core.a" />
-					<Add library="libwxbase30u.a" />
+					<Add library="libwxmsw31u_core.a" />
+					<Add library="libwxbase31u.a" />
 					<Add library="libwxpng.a" />
 					<Add library="libwxzlib.a" />
-					<Add directory="D:/wxWidgets-3.0.3/lib/gcc_dll" />
+					<Add directory="D:/wxWidgets-3.1.2_dyn/lib/gcc_dll" />
 				</Linker>
 			</Target>
 		</Build>
@@ -58,13 +58,12 @@
 			<Add option="-D__WXMSW__" />
 			<Add option="-DWXUSINGDLL" />
 			<Add option="-DwxUSE_UNICODE" />
-			<Add directory="D:/wxWidgets-3.0.3/include" />
-			<Add directory="../Win Yandex Translate" />
+			<Add directory="../../../wxWidgets-3.1.2_dyn/include" />
 			<Add directory="../../../boost_66_installed/include/boost-1_66" />
 			<Add directory="../../../openssl-1.0.2n_7.2.0/include" />
 		</Compiler>
 		<ResourceCompiler>
-			<Add directory="D:/wxWidgets-3.0.3/include" />
+			<Add directory="../../../wxWidgets-3.1.2_dyn/include" />
 		</ResourceCompiler>
 		<Linker>
 			<Add option="-mthreads" />
@@ -75,6 +74,8 @@
 			<Add option="-lgdi32" />
 			<Add library="../../../boost_66_installed/lib/libboost_system-mgw72-mt-x32-1_66.a" />
 		</Linker>
+		<Unit filename="EventRedirect.cpp" />
+		<Unit filename="EventRedirect.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="Main.h" />
 		<Unit filename="Parse_YandexJSON.cpp" />

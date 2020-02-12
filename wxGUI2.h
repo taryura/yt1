@@ -16,18 +16,28 @@
 #endif
 
 #include "Main.h"
+#include "EventRedirect.h"
 
-class wxGUI2Frame: public wxFrame
+class wxGUI2Frame: public EventRedirect
 {
     public:
         wxGUI2Frame(wxFrame *frame, const wxString& title);
         ~wxGUI2Frame();
         wxMenuBar *mbar;
 
+        //declaring toolbars and menues in the heap
         wxToolBar *toolbar1;
         wxToolBar *toolbar2;
         wxTextCtrl *tc2;
         wxTextCtrl *tc;
+
+        wxChoice* choice1;
+        wxChoice* choice2;
+
+        wxButton* TranslateButton;
+
+        std::string SourceLangCode;
+        std::string TargetLangCode;
 
     private:
 
@@ -49,7 +59,14 @@ class wxGUI2Frame: public wxFrame
             idMenuEdit_Paste,
 
             //Help Menu
-            idMenuAbout
+            idMenuAbout,
+
+            //Dropdown menus
+            idDropdownSource,
+            idDropdownTarget,
+
+            //Buttons
+            idTranslateButton
 
         };
         //declaring event handlers
@@ -73,6 +90,14 @@ class wxGUI2Frame: public wxFrame
 
         //Help Menu
         void OnAbout(wxCommandEvent& event);
+
+        //Dropdown menus
+        void SetSource(wxCommandEvent& event);
+        void SetTarget(wxCommandEvent& event);
+
+        //Translate button
+        void OnTranslate(wxCommandEvent &event);
+
 
         //Menu creation methods of the main class
         void CreateFileMenu();
